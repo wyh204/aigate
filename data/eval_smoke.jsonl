@@ -1,0 +1,9 @@
+# Plumbing smoke set: every expected answer is contained in the prompt, so the
+# mock provider passes all of them. Use it to verify that a scoring run, cost
+# accounting and persistence work before spending money on a real model.
+{"id": "smoke-1", "input": "the capital of France is Paris", "expected": "Paris", "grading": "contains", "tags": ["smoke"]}
+{"id": "smoke-2", "input": "HTTP status 429 means rate limit exceeded", "expected": "429", "grading": "contains", "tags": ["smoke"]}
+{"id": "smoke-3", "input": "a JSON object starts with a brace", "expected": "brace", "grading": "contains", "tags": ["smoke"]}
+{"id": "smoke-4", "input": "the word semantic appears in this line", "expected": "semantic", "grading": "contains", "tags": ["smoke"]}
+{"id": "smoke-5", "input": "gpt-4o-mini is cheaper than gpt-4o", "expected": "cheaper", "grading": "contains", "tags": ["smoke"]}
+{"id": "smoke-6", "input": "TTFT measures time to first token", "expected": "first token", "grading": "contains", "tags": ["smoke"]}

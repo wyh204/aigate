@@ -1,0 +1,55 @@
+# 50-case quality set for real providers (mock cannot answer these).
+# Categories: math 15 / fact 10 / structured 8 / instruction 7 / chinese 10.
+# Grading rule of thumb: accept every phrasing that is semantically correct
+# (regex over literal substrings), and never "fix" a case after seeing outputs
+# unless the rule itself was wrong.
+{"id": "math-1", "input": "What is 17 * 23? Reply with the number only.", "expected": "391", "grading": "numeric", "tags": ["math"]}
+{"id": "math-2", "input": "What is 144 / 12? Reply with the number only.", "expected": "12", "grading": "numeric", "tags": ["math"]}
+{"id": "math-3", "input": "What is 99 - 43? Reply with the number only.", "expected": "56", "grading": "numeric", "tags": ["math"]}
+{"id": "math-4", "input": "What is 2 to the power of 10? Reply with the number only.", "expected": "1024", "grading": "numeric", "tags": ["math"]}
+{"id": "math-5", "input": "What is 7 * 8 - 9? Reply with the number only.", "expected": "47", "grading": "numeric", "tags": ["math"]}
+{"id": "math-6", "input": "What is 15% of 240? Reply with the number only.", "expected": "36", "grading": "numeric", "tags": ["math"]}
+{"id": "math-7", "input": "What is (18 + 12) * 3? Reply with the number only.", "expected": "90", "grading": "numeric", "tags": ["math"]}
+{"id": "math-8", "input": "What is the square root of 1764? Reply with the number only.", "expected": "42", "grading": "numeric", "tags": ["math"]}
+{"id": "math-9", "input": "Express 3/4 as a percentage. Reply with the digits only.", "expected": "75", "grading": "numeric", "tags": ["math"]}
+{"id": "math-10", "input": "What is 125 * 8? Reply with the number only.", "expected": "1000", "grading": "numeric", "tags": ["math"]}
+{"id": "math-11", "input": "How many meters are there in 2.5 kilometers? Reply with the digits only.", "expected": "2500", "grading": "numeric", "tags": ["math"]}
+{"id": "math-12", "input": "How many seconds are there in 45 minutes? Reply with the digits only.", "expected": "2700", "grading": "numeric", "tags": ["math"]}
+{"id": "math-13", "input": "An item costs 80 yuan and is discounted by 25%. What is the final price in yuan? Reply with the digits only.", "expected": "60", "grading": "numeric", "tags": ["math"]}
+{"id": "math-14", "input": "What is the average of 4, 8, 15 and 21? Reply with the number only.", "expected": "12", "grading": "numeric", "tags": ["math"]}
+{"id": "math-15", "input": "What is 17 modulo 5? Reply with the digits only.", "expected": "2", "grading": "numeric", "tags": ["math"]}
+{"id": "fact-1", "input": "Which city is the capital of Japan? Answer with one word.", "expected": "Tokyo", "grading": {"kind": "regex", "pattern": "(?i)tokyo"}, "tags": ["fact"]}
+{"id": "fact-2", "input": "Which city is the capital of Australia? Answer with one word.", "expected": "Canberra", "grading": {"kind": "regex", "pattern": "(?i)canberra"}, "tags": ["fact"]}
+{"id": "fact-3", "input": "What does HTTP status 404 mean? Answer in one short sentence.", "expected": "not found", "grading": {"kind": "regex", "pattern": "(?i)(not found|could not find|not be found|does not exist|cannot be found)"}, "tags": ["fact"]}
+{"id": "fact-4", "input": "What does HTTP status 500 mean? Answer in one short sentence.", "expected": "internal server error", "grading": {"kind": "regex", "pattern": "(?i)(internal server error|server error|internal error)"}, "tags": ["fact"]}
+{"id": "fact-5", "input": "What does HTTP status 201 mean? Answer in one short sentence.", "expected": "created", "grading": {"kind": "regex", "pattern": "(?i)\\bcreated\\b"}, "tags": ["fact"]}
+{"id": "fact-6", "input": "What is the chemical symbol for gold? Reply with the symbol only.", "expected": "Au", "grading": {"kind": "regex", "pattern": "(?i)\\bau\\b"}, "tags": ["fact"]}
+{"id": "fact-7", "input": "Which is the largest planet in the solar system? Answer with one word.", "expected": "Jupiter", "grading": {"kind": "regex", "pattern": "(?i)jupiter"}, "tags": ["fact"]}
+{"id": "fact-8", "input": "Who wrote Pride and Prejudice? Answer with the author's surname.", "expected": "Austen", "grading": {"kind": "regex", "pattern": "(?i)austen"}, "tags": ["fact"]}
+{"id": "fact-9", "input": "What is the currency of Japan? Answer with one word.", "expected": "yen", "grading": {"kind": "regex", "pattern": "(?i)\\byen\\b"}, "tags": ["fact"]}
+{"id": "fact-10", "input": "At sea level, at what temperature in Celsius does water boil? Reply with the digits only.", "expected": "100", "grading": "numeric", "tags": ["fact"]}
+{"id": "struct-1", "input": "Return a compact JSON object with status set to \"ok\" and count set to 3. Output JSON only.", "grading": {"kind": "regex", "pattern": "(?si)(?=.*\"status\"\\s*:\\s*\"ok\")(?=.*\"count\"\\s*:\\s*3)"}, "tags": ["structured"]}
+{"id": "struct-2", "input": "Return a JSON array with exactly three lowercase strings: red, green, blue. Output JSON only.", "grading": {"kind": "regex", "pattern": "(?si)(?=.*\"red\")(?=.*\"green\")(?=.*\"blue\")"}, "tags": ["structured"]}
+{"id": "struct-3", "input": "Reply with exactly the word READY and nothing else.", "expected": "READY", "grading": "exact", "tags": ["structured"]}
+{"id": "struct-4", "input": "Write the SQL statement that selects every column from the users table where age is greater than 18. SQL only.", "grading": {"kind": "regex", "pattern": "(?si)select\\s+\\*\\s+from\\s+users\\s+where\\s+age\\s*>\\s*18"}, "tags": ["structured"]}
+{"id": "struct-5", "input": "Return the JSON object with the single key ok whose value is the boolean true. Output JSON only.", "grading": {"kind": "regex", "pattern": "(?si)\\{\\s*\"ok\"\\s*:\\s*true\\s*\\}"}, "tags": ["structured"]}
+{"id": "struct-6", "input": "Output only a CSV header row with the three columns name, age and city in that order.", "grading": {"kind": "regex", "pattern": "(?i)name\\s*,\\s*age\\s*,\\s*city"}, "tags": ["structured"]}
+{"id": "struct-7", "input": "Print the Python expression that sums the list [1, 2, 3] with the built-in sum function. Expression only.", "grading": {"kind": "regex", "pattern": "(?si)sum\\(\\s*\\[\\s*1\\s*,\\s*2\\s*,\\s*3\\s*\\]\\s*\\)"}, "tags": ["structured"]}
+{"id": "struct-8", "input": "Return the nested JSON object where key user maps to an object with id equal to 7. Output JSON only.", "grading": {"kind": "regex", "pattern": "(?si)\"user\"\\s*:\\s*\\{\\s*\"id\"\\s*:\\s*7\\s*\\}"}, "tags": ["structured"]}
+{"id": "instr-1", "input": "Reply with exactly the two words good morning and nothing else.", "expected": "good morning", "grading": "exact", "tags": ["instruction"]}
+{"id": "instr-2", "input": "What is the capital of France? Answer with at most three words.", "expected": "Paris", "grading": {"kind": "regex", "pattern": "(?i)^\\s*paris[.!]?\\s*$"}, "tags": ["instruction"]}
+{"id": "instr-3", "input": "How many letters are in the word strawberry? Reply with the digits only.", "expected": "10", "grading": "numeric", "tags": ["instruction"]}
+{"id": "instr-4", "input": "Reply with exactly the word NO and nothing else.", "expected": "NO", "grading": "exact", "tags": ["instruction"]}
+{"id": "instr-5", "input": "List three prime numbers below 10, separated by commas. Nothing else.", "grading": {"kind": "regex", "pattern": "(?i)2\\s*,\\s*3\\s*,\\s*5"}, "tags": ["instruction"]}
+{"id": "instr-6", "input": "Translate good night into Chinese. Reply with the Chinese words only.", "expected": "晚安", "grading": {"kind": "regex", "pattern": "晚安"}, "tags": ["instruction"]}
+{"id": "instr-7", "input": "Reply with the number forty-two in digits only, no words.", "expected": "42", "grading": "numeric", "tags": ["instruction"]}
+{"id": "zh-1", "input": "把“我们的服务目前不可用”改写得更有礼貌，一句话即可。", "grading": {"kind": "regex", "pattern": "(抱歉|谅解|敬请|不便|稍后)"}, "tags": ["chinese"]}
+{"id": "zh-2", "input": "把“这个功能下周上线”翻译成英文，一句话。", "grading": {"kind": "regex", "pattern": "(?si)(?=.*next week)(?=.*(launch|ship|release|deploy|go live|go online|available|roll out))"}, "tags": ["chinese"]}
+{"id": "zh-3", "input": "用一句话解释什么是缓存。", "grading": {"kind": "llm_judge", "rubric": "一句话说明缓存是把常用数据放在更快的存储里、避免重复计算或重复请求。"}, "tags": ["chinese", "judge"]}
+{"id": "zh-4", "input": "把“公司第三季度营收同比增长百分之十二”改写成不超过 20 个字的标题。", "grading": {"kind": "llm_judge", "rubric": "标题不超过20个汉字，且保留“营收”与“增长”的含义。"}, "tags": ["chinese", "judge"]}
+{"id": "zh-5", "input": "“他的成绩提高的很快”这句话有语病，请给出修改后的版本。", "grading": {"kind": "regex", "pattern": "提高得很快"}, "tags": ["chinese"]}
+{"id": "zh-6", "input": "把“请尽快回复”改写成更正式的书面表达。", "grading": {"kind": "llm_judge", "rubric": "使用敬语或正式措辞请求对方尽快回复，例如“敬请尽快回复”。"}, "tags": ["chinese", "judge"]}
+{"id": "zh-7", "input": "在系统设计中，“熔断”是什么意思？一句话解释。", "grading": {"kind": "llm_judge", "rubric": "说明熔断是在下游连续失败时快速失败并停止调用，避免故障扩散，可提到恢复探测。"}, "tags": ["chinese", "judge"]}
+{"id": "zh-8", "input": "说出三个表示“开心”的中文词，用顿号分隔。", "grading": {"kind": "llm_judge", "rubric": "给出三个不同的表示开心的中文词，用顿号或逗号分隔。"}, "tags": ["chinese", "judge"]}
+{"id": "zh-9", "input": "把 Hello, world! 翻译成中文。", "grading": {"kind": "regex", "pattern": "(你好|嗨)[，,\\s]*世界"}, "tags": ["chinese"]}
+{"id": "zh-10", "input": "把“会议改到下午三点”翻译成英文，一句话。", "grading": {"kind": "regex", "pattern": "(?si)(?=.*(three|3)\\s*(pm|p\\.m\\.|o.c.?lock))(?=.*(moved|move|reschedul|chang))"}, "tags": ["chinese"]}

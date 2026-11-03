@@ -1,0 +1,11 @@
+# Quality set for real providers. The mock provider cannot answer these; run
+# them with a real key (DEEPSEEK_API_KEY) to get numbers that mean something.
+{"id": "math-1", "input": "What is 17 * 23? Reply with the number only.", "expected": "391", "grading": "numeric", "tags": ["math"]}
+{"id": "math-2", "input": "What is 144 / 12? Reply with the number only.", "expected": "12", "grading": "numeric", "tags": ["math"]}
+{"id": "math-3", "input": "What is 99 - 43? Reply with the number only.", "expected": "56", "grading": "numeric", "tags": ["math"]}
+{"id": "math-4", "input": "What is 2 to the power of 10? Reply with the number only.", "expected": "1024", "grading": "numeric", "tags": ["math"]}
+{"id": "math-5", "input": "What is 7 * 8 - 9? Reply with the number only.", "expected": "47", "grading": "numeric", "tags": ["math"]}
+{"id": "instr-1", "input": "Reply with exactly the word DONE and nothing else.", "expected": "DONE", "grading": "exact", "tags": ["instruction"]}
+{"id": "fact-1", "input": "Which city is the capital of Japan? Answer with one word.", "expected": "Tokyo", "grading": "contains", "tags": ["fact"]}
+{"id": "fact-2", "input": "What does HTTP status 404 mean? Answer in one short sentence.", "expected": "not found", "grading": {"kind": "regex", "pattern": "(?i)(not found|could not find|not be found|does not exist|isn't found|cannot be found)"}, "tags": ["fact"]}
+{"id": "rubric-1", "input": "Explain in two sentences why semantic caching can return a wrong answer.", "expected": "Two sentences explaining that near-duplicate prompts can have different required answers.", "grading": {"kind": "llm_judge", "rubric": "Two sentences, names the risk of treating a similar but different question as a cache hit."}, "tags": ["judge"]}

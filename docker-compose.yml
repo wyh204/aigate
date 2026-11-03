@@ -1,0 +1,51 @@
+# `docker compose up` starts the gateway only (SQLite, zero setup).
+# `docker compose --profile full up` also brings up Postgres and Redis; then
+# point the gateway at Postgres and run the migration:
+#   AIGATE_DATABASE_URL=postgresql+asyncpg://aigate:aigate@postgres:5432/aigate
+#   docker compose run --rm gateway alembic upgrade head
+
+services:
+  gateway:
+    build: .
+    image: aigate:dev
+    ports:
+      - "8000:8000"
+    environment:
+      AIGATE_LOG_LEVEL: ${AIGATE_LOG_LEVEL:-INFO}
+      AIGATE_API_KEYS: ${AIGATE_API_KEYS:-}
+      AIGATE_ADMIN_TOKEN: ${AIGATE_ADMIN_TOKEN:-}
+      # Inside the compose network the host is `postgres`, not localhost.
+      AIGATE_DATABASE_URL: ${AIGATE_DATABASE_URL:-sqlite+aiosqlite:///./data/aigate.db}
+      DEEPSEEK_API_KEY: ${DEEPSEEK_API_KEY:-}
+      OPENAI_API_KEY: ${OPENAI_API_KEY:-}
+      DASHSCOPE_API_KEY: ${DASHSCOPE_API_KEY:-}
+    volumes:
+      - sqlite:/srv/data
+    restart: unless-stopped
+
+  postgres:
+    image: postgres:16-alpine
+    profiles: ["full"]
+    environment:
+      POSTGRES_USER: aigate
+      POSTGRES_PASSWORD: aigate
+      POSTGRES_DB: aigate
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U aigate"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+  redis:
+    image: redis:7-alpine
+    profiles: ["full"]
+    ports:
+      - "6379:6379"
+
+volumes:
+  pgdata:
+  sqlite:

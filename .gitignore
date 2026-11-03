@@ -1,0 +1,23 @@
+# python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+*.egg-info/
+
+# local config & secrets
+.env
+*.local
+
+# data
+*.db
+*.sqlite3
+
+# eval run reports (regenerate with `python -m app.evals run`)
+eval_runs/
+
+# pytest --basetemp output (may contain the username)
+pytest-of-*/
